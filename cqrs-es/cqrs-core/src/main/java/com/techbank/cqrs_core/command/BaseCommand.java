@@ -1,11 +1,13 @@
 package com.techbank.cqrs_core.command;
 
 import com.techbank.cqrs_core.message.Message;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
 @NoArgsConstructor
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode(callSuper = true)
 public abstract class BaseCommand extends Message {
     protected BaseCommand(String id) {
         super(id);
