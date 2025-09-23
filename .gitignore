@@ -1,0 +1,46 @@
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+/bank-account/.mvn
+/cqrs-es/cqrs-core/.mvn
+/cqrs-es/cqrs-core/target
+/cqrs-es/cqrs-core/mvnw
+/cqrs-es/cqrs-core/mvnw.cmd
+.DS_Store
+bank-account/account-cmd/mvnw
+bank-account/account-cmd/.mvn/wrapper/maven-wrapper.properties
+bank-account/account-query/.mvn/wrapper/maven-wrapper.properties
+bank-account/account-query/mvnw
+bank-account/account-query/mvnw.cmd
+bank-account/account-common/mvnw
+bank-account/account-cmd/mvnw.cmd
