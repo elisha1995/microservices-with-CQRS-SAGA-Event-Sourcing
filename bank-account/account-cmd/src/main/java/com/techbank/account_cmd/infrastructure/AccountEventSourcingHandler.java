@@ -5,9 +5,11 @@ import com.techbank.cqrs_core.domain.AggregateRoot;
 import com.techbank.cqrs_core.event.BaseEvent;
 import com.techbank.cqrs_core.handler.EventSourcingHandler;
 import com.techbank.cqrs_core.infrastructure.EventStore;
+import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 
+@Service
 public class AccountEventSourcingHandler implements EventSourcingHandler<AccountAggregate> {
 
     private final EventStore eventStore;
