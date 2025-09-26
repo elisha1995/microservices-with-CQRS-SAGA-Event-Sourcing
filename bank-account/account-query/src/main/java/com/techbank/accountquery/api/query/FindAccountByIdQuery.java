@@ -8,7 +8,7 @@ import lombok.*;
 @ToString
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
-public class FindAllAcountsByIdQuery extends BaseQuery {
+public class FindAccountByIdQuery extends BaseQuery {
 
     private String id;
 }
