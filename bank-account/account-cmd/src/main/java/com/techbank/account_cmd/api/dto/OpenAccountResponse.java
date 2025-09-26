@@ -1,11 +1,12 @@
 package com.techbank.account_cmd.api.dto;
 
 import com.techbank.account_common.dto.BaseResponse;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class OpenAccountResponse extends BaseResponse {

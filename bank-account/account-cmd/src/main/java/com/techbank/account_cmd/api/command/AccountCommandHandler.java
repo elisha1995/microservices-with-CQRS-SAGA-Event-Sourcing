@@ -1,7 +1,9 @@
 package com.techbank.account_cmd.api.command;
 
 import com.techbank.account_cmd.domain.AccountAggregate;
+import com.techbank.cqrs_core.exception.AggregateNotFoundException;
 import com.techbank.cqrs_core.handler.EventSourcingHandler;
+import java.util.Objects;
 import org.springframework.stereotype.Service;
 
 @Service
