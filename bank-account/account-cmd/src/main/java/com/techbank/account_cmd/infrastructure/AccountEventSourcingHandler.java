@@ -5,6 +5,7 @@ import com.techbank.cqrs_core.domain.AggregateRoot;
 import com.techbank.cqrs_core.event.BaseEvent;
 import com.techbank.cqrs_core.handler.EventSourcingHandler;
 import com.techbank.cqrs_core.infrastructure.EventStore;
+import com.techbank.cqrs_core.producer.EventProducer;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -14,8 +15,11 @@ public class AccountEventSourcingHandler implements EventSourcingHandler<Account
 
     private final EventStore eventStore;
 
-    public AccountEventSourcingHandler(EventStore eventStore) {
+    private final EventProducer eventProducer;
+
+    public AccountEventSourcingHandler(EventStore eventStore, EventProducer eventProducer) {
         this.eventStore = eventStore;
+        this.eventProducer = eventProducer;
     }
 
     @Override
@@ -38,5 +42,19 @@ public class AccountEventSourcingHandler implements EventSourcingHandler<Account
         }
 
         return aggregate;
+    }
+
+    @Override
+    public void republishEvents() {
+        var aggregateIds = eventStore.getAggregateIds();
+        for (var aggregateId : aggregateIds) {
+            var aggregate = getById(aggregateId);
+            if (aggregate == null || !aggregate.getActive()) continue;
+
+            var events = eventStore.getEvents(aggregateId);
+            for (var event : events) {
+                eventProducer.produce(event.getClass().getSimpleName(), event);
+            }
+        }
     }
 }

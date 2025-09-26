@@ -1,9 +1,7 @@
 package com.techbank.account_cmd.api.command;
 
 import com.techbank.account_cmd.domain.AccountAggregate;
-import com.techbank.cqrs_core.exception.AggregateNotFoundException;
 import com.techbank.cqrs_core.handler.EventSourcingHandler;
-import java.util.Objects;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -43,5 +41,10 @@ public class AccountCommandHandler implements CommandHandler{
         var aggregate = eventSourcingHandler.getById(command.getId());
         aggregate.closeAccount();
         eventSourcingHandler.save(aggregate);
+    }
+
+    @Override
+    public void handle(RestoreReadDbCommand command) {
+        eventSourcingHandler.republishEvents();
     }
 }

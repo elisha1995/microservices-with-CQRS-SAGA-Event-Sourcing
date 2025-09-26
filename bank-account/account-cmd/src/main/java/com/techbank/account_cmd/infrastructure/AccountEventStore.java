@@ -63,4 +63,14 @@ public class AccountEventStore implements EventStore {
         return eventStream.stream().map(EventModel::getEventData).toList();
     }
 
+    @Override
+    public List<String> getAggregateIds() {
+        var eventStream = eventStoreRepository.findAll();
+        if (eventStream.isEmpty()) {
+            throw new IllegalStateException("Could not retrieve event stream from event store");
+        }
+
+        return eventStream.stream().map(EventModel::getAggregateIdentifier).distinct().toList();
+    }
+
 }
